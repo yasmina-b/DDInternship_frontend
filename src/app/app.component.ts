@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   constructor (private appService : AppService, private userService : UserService) {
 
-    let hello$ = userService.helloWorld();
+    let hello$ = userService.getUsers();
 
     hello$.subscribe(
         (data: any) => console.log(data),
