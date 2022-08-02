@@ -24,22 +24,26 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+
   createUser() {
     let user : User
-    user = new User(
-      this.regForm.value.firstName,
-      this.regForm.value.lastName,
-      this.regForm.value.email,
-      this.regForm.value.phoneNumber,
-      this.regForm.value.password
-    )
+    user = new User();
+      user.firstName= this.regForm.value.firstName,
+      user.lastName=this.regForm.value.lastName,
+      user.email=this.regForm.value.email,
+      user.phoneNumber=this.regForm.value.phoneNumber,
+      user.password=this.regForm.value.password
+    
+    console.log(user);
 
     this.userService.createUsers(user).subscribe(
       response =>{
         console.log(response);
+        
       },
       error =>{
-        console.log(error);   
+        console.log(error); 
+         
       }
     );
   }
