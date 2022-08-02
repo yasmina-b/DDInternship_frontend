@@ -6,14 +6,27 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CounterComponent } from './counter/counter.component'
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { TitleComponent } from './title/title.component';
 import { FooterComponent } from './footer/footer.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { AdminComponent } from './admin/admin.component';
+import { RoleGuardService } from './auth/role-guard.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -25,15 +38,29 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     HomepageComponent,
     TitleComponent,
-    FooterComponent
+    FooterComponent,
+    MyAccountComponent,
+    AdminComponent,
+    SidebarComponent,
+    AdminHeaderComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [
+    RoleGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
