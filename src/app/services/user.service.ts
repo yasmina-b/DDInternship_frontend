@@ -5,25 +5,39 @@ import { User } from '../models/user.component';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  getUsers(): Observable<any> {
+    let url = 'http://localhost:8080/api/getUser';
+    return this.http.get<any>(url);
+  }
 
-    getUsers():  Observable<any> {
-        let url = "http://localhost:8080/api/getUser";
-        return this.http.get<any>(url);
-    }
+  createUsers(
+    user: Partial<{
+      firstname: string | null;
+      lastname: string | null;
+      email: string | null;
+      phone: string | null;
+      password: string | null;
+    }>
+  ): Observable<Object> {
+    return this.http.post('http://localhost:8080/api/createUser', user);
+  }
 
-    createUsers(user :Partial<{ firstname: string | null; lastname: string | null; email: string | null; phone: string | null; password: string | null}>): Observable<Object>{
-        return this.http.post("http://localhost:8080/api/createUser",user);
-    }
+  userLogin(user: User): Observable<any> {
+    return this.http.post('http://localhost:8080/api/loginUser', user);
+  }
 
-    loginUser(user : User) : Observable<any>{
-        return this.http.post("http://localhost:8080/api/loginUser",user);
-    }
+  updateUser(userId: number, user: User): Observable<User> {
+    const putUrl = 'http://localhost:8080/api/updateUser' + '/' + userId;
+    return this.http.put<User>(putUrl, user);
+  }
 
-    updateUser(userId : number, user : User): Observable<User> {
-        const putUrl = "http://localhost:8080/api/updateUser" + '/' + userId;
-        return this.http.put<User>(putUrl, user);
-    }
+  getUserByEmail(email: String) {
+    return this.http.get('http://localhost:8080/api/findUserByEmail/' + email);
+  }
 
+  deleteUser(id: number) {
+    return this.http.delete('http://localhost:8080/api/deleteUserById/' + id);
+  }
 }

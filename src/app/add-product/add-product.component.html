@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>CREATE A BASE PRODUCT</h2>
+<br />
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <input matInput placeholder="Description" formControlName="description" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Subcategory</mat-label>
+    <mat-select [(value)]="selectedSubcategory">
+      <mat-option *ngFor="let subcategory of subcategories" [value]="subcategory.id">
+        {{ subcategory.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<br />
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="createProduct()">
+    CREATE
+  </button>
+</mat-dialog-actions>

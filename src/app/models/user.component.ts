@@ -1,10 +1,9 @@
 export class User {
-    firstName! :string;
-    lastName! :string;
-    email! :string;
-    phoneNumber! :string;
-    password! :string;
-    role! :string;
-    
-
+  id!: number;
+  firstName!: string;
+  lastName!: string;
+  email!: string;
+  phoneNumber!: string;
+  password!: string;
+  role!: string;
 }

@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>CREATE A NEW ATTRIBUTE</h2>
+<br />
+<mat-dialog-content [formGroup]="form" (ngSubmit)="createAttribute()">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Attribute Value</mat-label>
+    <mat-select  [formControl]="attributes" multiple>
+      <mat-option
+        *ngFor="let attributeValue of attributeValues"
+        [value]="attributeValue"
+      >
+        {{ attributeValue.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Subcategories</mat-label>
+    <mat-select  [formControl]="subcategoriess" multiple>
+      <mat-option
+        *ngFor="let subcategory of subcategories"
+        [value]="subcategory"
+      >
+        {{ subcategory.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<br />
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="createAttribute()">CREATE</button>
+</mat-dialog-actions>
+
+<div>{{attributes}}</div>
+<div>{{subcategoriess}}</div>

@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>CREATE A VALUE FOR ATTRIBUTE</h2>
+<br />
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="Value" formControlName="value" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Product Attribute</mat-label>
+    <mat-select [(value)]="selectedAttribute">
+      <mat-option *ngFor="let productAttribute of productAttributes" [value]="productAttribute.id">
+        {{ productAttribute.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<br />
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="createAttributeValue()">
+    CREATE
+  </button>
+</mat-dialog-actions>
+
