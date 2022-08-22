@@ -1,39 +1,71 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="text-center">
-                    <h1>HELLO USER</h1>
-                    <br>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <label  for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName">
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneNumber" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" formControlName="phoneNumber">
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" formControlName="password">
-                    </div>
-                    <br>
-                    <div class="text-center">
-                        <button id="submitButton" type="submit" class="btn btn-outline-dark">
-                           UPDATE
-                        </button>
-                    </div>
-                </form>
-                <br>
-            </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="text-center">
+          <h1>HELLO USER</h1>
+          <br />
         </div>
+        <form (ngSumbit)="updateUser()">
+          <div class="form-group">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              [(ngModel)]="newUser.firstName"
+              placeholder="{{ user.firstName }}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="lastName"
+              [(ngModel)]="newUser.lastName"
+              placeholder="{{ user.lastName }}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber" class="form-label">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              [(ngModel)]="newUser.email"
+              placeholder="{{ user.email }}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              name="phoneNumber"
+              [(ngModel)]="newUser.phoneNumber"
+              placeholder="{{ user.phoneNumber }}"
+            />
+          </div>
+          <br />
+          <div class="text-center">
+            <label
+              *ngIf="success != ''"
+              style="font-family: Arial, Helvetica, sans-serif"
+              >{{ success }}</label
+            >
+            <button
+              id="submitButton"
+              type="submit"
+              class="btn btn-outline-dark"
+              (click)="updateUser()"
+            >
+              UPDATE
+            </button>
+          </div>
+        </form>
+        <br />
+      </div>
     </div>
+  </div>
 </div>
-
-

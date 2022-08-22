@@ -1,49 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user.component';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  user: User = new User();
 
-  user : User = new User();
+  constructor(public router: Router, public userService: UserService) {}
 
-  constructor (public router : Router, public userService: UserService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+  message = '';
+  success = '';
+  logedUser: boolean = false;
+  logedAdmin: boolean = false;
 
-  response : String = "";
-  logedUser : boolean = false;
-  logedAdmin : boolean = false;
+  onLogin() {
+    this.message = '';
+    this.success = '';
 
-  onLogin () {
-    this.response = "";
-    
-    this.userService.loginUser(this.user).subscribe(data=>
-      { console.log(data);
-        localStorage.setItem('user', JSON.stringify(this.user));
-        console.log(data.role);
-        if(data.role == 'admin') {
-          NavbarComponent.logedAdminValue(true);
-          this.router.navigate(['']);
-        }
-        else {
-          this.router.navigate(['']);
-          NavbarComponent.logedUserValue(true);
-        }
-
+    this.userService.userLogin(this.user).subscribe({
+      next: (userData) => {
+        localStorage.setItem('user', JSON.stringify(userData));
+        this.success = 'Log in successful';
+        this.router.navigate(['']);
       },
-      error=>{
+      error: (error) => {
         console.log(error);
-        this.response = error.error;
-      });
-  
+        this.message = error.error;
+      },
+    });
   }
-
 }

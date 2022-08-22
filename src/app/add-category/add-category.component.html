@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>CREATE A NEW CATEGORY</h2>
+<br />
+<mat-dialog-content [formGroup]="form" (ngSubmit)="createCategory()">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+</mat-dialog-content>
+<br />
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="createCategory()">CREATE</button>
+</mat-dialog-actions>
